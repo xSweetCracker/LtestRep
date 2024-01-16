@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    {% for p in posts %}
+        <a href="{% url 'post:detail' p.slug %}" class="post__link">
+            <h1 class="post__title">{{ p.title }}</h1>
+            <hr>
+        </a>
+    {% endfor %}
+    <a href="{% url 'post:create' %}">Создать запись</a>
+</body>
+</html>
