@@ -1,10 +1,11 @@
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.shortcuts import render
 from django.views.generic import CreateView
 
 from django.http import HttpResponse, HttpRequest
 from django.contrib.auth import authenticate, login, logout
-from .forms import LoginForm, UserRegisterForm
+from .forms import LoginForm, UserRegisterForm, UserEditForm
 
 
 # Create your views here.
@@ -66,5 +67,16 @@ def register(request: HttpRequest, *args, **kwargs):
     )
 
 
-def out(request: HttpRequest):
-    pass
+@login_required
+def edit(request):
+    if request.method == 'POST':
+        user_form = UserEditForm(
+            instance=request.user,
+            data=request.POST
+        )
+
+        if user_form.is_valid():
+            user_form.save()
+
+    else:
+
