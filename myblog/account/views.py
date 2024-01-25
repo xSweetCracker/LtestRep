@@ -79,4 +79,10 @@ def edit(request):
             user_form.save()
 
     else:
+        user_form = UserEditForm(request.user)
 
+    return render(
+        request,
+        'account/edit.html',
+        {'edit_form': user_form}
+    )
