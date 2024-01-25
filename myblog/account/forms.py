@@ -34,4 +34,4 @@ class UserRegisterForm(forms.ModelForm):
 class UserEditForm(forms.ModelForm):
     class Meta:
         model = Account
-        fields = ['first_name', 'phone']
+        fields = ['phone']
